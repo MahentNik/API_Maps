@@ -1,4 +1,5 @@
-from PyQt5.QtGui import QPixmap
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QPixmap, QKeyEvent
 from PyQt5.QtWidgets import *
 from app_services.map_app_service import MapAppService
 from domain.request import Request
@@ -28,6 +29,14 @@ class MainWindow(QWidget):
         pixmap = QPixmap()
         pixmap.loadFromData(map, "PNG")
         self.map_label.setPixmap(pixmap)
+
+    def keyPressEvent(self, event: QKeyEvent):
+        key = event.key()
+        if key == Qt.Key_PageUp:
+            self.request.zoom_up()
+        elif key == Qt.Key_PageDown:
+            self.request.zoom_down()
+        self.show_map()
 
 
 if __name__ == '__main__':

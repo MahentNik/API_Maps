@@ -16,3 +16,11 @@ class Request:
 
     def get_type(self):
         return self.type
+
+    def zoom_up(self):
+        if self.zoom < 17:
+            self.zoom += 1
+
+    def zoom_down(self):
+        if self.zoom > 0:
+            self.zoom -= 1
